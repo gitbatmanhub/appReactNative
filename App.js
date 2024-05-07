@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Example from './screens/homeScreen';
+import ProfileScreen from './screens/profileScreen';
+import Login from './screens/auth/login';
+import Register from './screens/auth/register';
+import Dashboard from './screens/dashboard/dashboard';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Stack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={Example}  options={{headerShown: false}}/>
+                <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen name="Ingresar" component={Login} />
+                <Stack.Screen name="Registrarse" component={Register} />
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{headerShown: false}}/>
+                {/* Agrega más pantallas aquí */}
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
+
+export default App;
